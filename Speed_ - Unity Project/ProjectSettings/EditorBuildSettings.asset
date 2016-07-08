@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/UFPS/Base/Content/Levels/DemoScene3/UFPS_DemoScene3.unity
+    path: Assets/Plugins/UFPS/Base/Content/Levels/DemoScene3/UFPS_DemoScene3.unity
   - enabled: 0
-    path: Assets/UFPS/Base/Content/Levels/DemoScene1/UFPS_DemoScene1.unity
+    path: Assets/Plugins/UFPS/Base/Content/Levels/DemoScene1/UFPS_DemoScene1.unity
   - enabled: 0
-    path: Assets/UFPS/Base/Content/Levels/DemoScene2/UFPS_DemoScene2.unity
+    path: Assets/Plugins/UFPS/Base/Content/Levels/DemoScene2/UFPS_DemoScene2.unity
   - enabled: 0
-    path: Assets/UFPS/Base/Content/Levels/CleanScene/UFPS_CleanScene.unity
+    path: Assets/Plugins/UFPS/Base/Content/Levels/CleanScene/UFPS_CleanScene.unity
   - enabled: 0
-    path: Assets/UFPS/Base/Content/Levels/SkyCity/UFPS_SkyCity.unity
+    path: Assets/Plugins/UFPS/Base/Content/Levels/SkyCity/UFPS_SkyCity.unity
   - enabled: 0
     path: Assets/UFPS/Multiplayer/Content/Levels/Examples/UFPSMP_GameModes.unity
   - enabled: 1
