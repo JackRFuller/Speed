@@ -30,6 +30,7 @@ public class vp_MovingPlatform : MonoBehaviour
 
 	// misc
 	protected Transform m_Transform = null;
+    private bool hasStarted = false;
 
 	// path
 	public PathMoveType PathType = PathMoveType.PingPong;
@@ -187,14 +188,17 @@ public class vp_MovingPlatform : MonoBehaviour
 	/// </summary>
 	void FixedUpdate()
 	{
-				
-		UpdatePath();
-		
-		UpdateMovement();
+	    if (hasStarted)
+	    {
+            UpdatePath();
 
-		UpdateRotation();
+            UpdateMovement();
+
+            UpdateRotation();
+
+            UpdateVelocity();
+        }		
 		
-		UpdateVelocity();
 
 	}
 
@@ -318,7 +322,7 @@ public class vp_MovingPlatform : MonoBehaviour
 		{
 			vp_Timer.In(MoveReturnDelay, delegate()
 			{
-				GoTo(0);
+				ActivateSwitchBehaviour();
 			}, m_ReturnDelayTimer);
 		}
 
@@ -466,32 +470,20 @@ public class vp_MovingPlatform : MonoBehaviour
 	/// (button / lever) to start a platform and make it go to a specific
 	/// waypoint. NOTE: the platform must be in 'Target' Path mode.
 	/// </summary>
-	public void GoTo(int targetWayPoint)
+	public void ActivateSwitchBehaviour()
 	{
 
-		if (!vp_Gameplay.isMaster)
-			return;
-
-		if (Time.time < m_NextAllowedMoveTime)
-			return;
-
-		if (PathType != PathMoveType.Target)
-			return;
-
-		m_TargetedWayPoint = GetValidWaypoint(targetWayPoint);
-
-		if (targetWayPoint > m_NextWaypoint)
-		{
-			if (PathDirection != Direction.Direct)
-				PathDirection = Direction.Forward;
-		}
-		else
-		{
-			if (PathDirection != Direction.Direct)
-				PathDirection = Direction.Backwards;
-		}
+		
+		if (PathDirection != Direction.Direct)
+			PathDirection = Direction.Forward;
+		
+		if (PathDirection != Direction.Direct)
+			PathDirection = Direction.Backwards;
+		
 
 		m_Moving = true;
+
+	    hasStarted = true;
 
 	}
 
@@ -584,7 +576,7 @@ public class vp_MovingPlatform : MonoBehaviour
 
 		TryPushPlayer();
 
-		TryAutoStart();
+		//TryAutoStart();
 		
 	}
 
@@ -731,21 +723,21 @@ public class vp_MovingPlatform : MonoBehaviour
 	/// auto starts the platform if player is on top of it and auto
 	/// start is enabled
 	/// </summary>
-	public void TryAutoStart()
-	{
+	//public void TryAutoStart()
+	//{
 
-		if (!vp_Gameplay.isMaster)
-			return;
+	//	if (!vp_Gameplay.isMaster)
+	//		return;
 
-		if (MoveAutoStartTarget == 0)
-			return;
+	//	if (MoveAutoStartTarget == 0)
+	//		return;
 
-		if (m_PhysicsCurrentMoveVelocity > 0.0f || m_Moving)
-			return;
+	//	if (m_PhysicsCurrentMoveVelocity > 0.0f || m_Moving)
+	//		return;
 
-		GoTo(MoveAutoStartTarget);
+	//	GoTo(MoveAutoStartTarget);
 
-	}
+	//}
 	
 
 	/// <summary>
